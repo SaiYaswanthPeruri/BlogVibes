@@ -1,7 +1,7 @@
 import conf from '../conf/conf.js';
 import {Client,Account,ID} from "appwrite";
 
-export class AuthSevice{
+export class AuthService{
     client = new Client();
     account;
 
@@ -55,6 +55,6 @@ export class AuthSevice{
     }
 }
 
-const authSevice = new AuthSevice();
+const authService = new AuthService();
 
-export default authSevice;
+export default authService;
