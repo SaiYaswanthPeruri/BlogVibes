@@ -1,6 +1,6 @@
 import conf from '../conf/conf.js';
 import {Client,Account,ID} from "appwrite";
-
+// done
 export class AuthService{
     client = new Client();
     account;
@@ -16,12 +16,12 @@ export class AuthService{
     async createAccount({email,password,name}){
         try {
             //   create used to create account
-            const useAccount = await this.account.create(ID.unique(),email,password,name);
-            if(useAccount){
+            const userAccount = await this.account.create(ID.unique(),email,password,name);
+            if(userAccount){
                 //  to the account
                 return this.login({email,password});
             }else{
-                return useAccount;
+                return userAccount;
             }
         } catch (error) {
             throw error;
@@ -31,7 +31,7 @@ export class AuthService{
     async login({email,password}){
         try {
             // check this if error createEmailPasswordSession
-            return await this.account.createEmailSession(email,password);
+            return await this.account.createEmailPasswordSession(email,password);
         } catch (error) {
             throw error;
         }
@@ -48,7 +48,7 @@ export class AuthService{
 
     async logout(){
         try {
-            return await this.account.deleteSessions();
+            await this.account.deleteSessions();
         } catch (error) {
             console.log("Appwrite service :: logout :: error",error);
         }
